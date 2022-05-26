@@ -62,8 +62,8 @@ public class Upload extends HttpServlet {
         Part file_to_upload = request.getPart("filetoupload");
 
         //we want the sha-1 file digest of the uploaded file
-        //vogliamo creare il digest sha-1 del file
-        MessageDigest md = MessageDigest.getInstance("SHA-1");
+        //vogliamo creare il digest sha-512 del file
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
         //create a file (with a unique name) and copy the uploaded file to it
         //creiamo un nuovo file (con nome univoco) e copiamoci il file scaricato
         File uploaded_file = File.createTempFile("upload_", "", new File(getServletContext().getInitParameter("uploads.directory")));
