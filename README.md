@@ -1,4 +1,4 @@
-# Esempio_Uploader_Maven
+# Java_Example_Uploader
 > A simple file repository with Java servlets
 
 This application shows how to correctly upload and download files in a web application with database support.
@@ -17,6 +17,6 @@ Finally, this example uses a MySQL database. Therefore, you need a working insta
 
 ---
 
-![University od L'Aquila](https://www.disim.univaq.it/skins/aqua/img/logo2021-2.png)
+![University of L'Aquila](https://www.disim.univaq.it/skins/aqua/img/logo2021-2.png)
 
  
