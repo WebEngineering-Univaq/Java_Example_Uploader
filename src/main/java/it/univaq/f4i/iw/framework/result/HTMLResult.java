@@ -207,7 +207,7 @@ public class HTMLResult {
     public static String sanitizeHTMLOutput(String s) {
         return s.replaceAll("&", "&amp;")
                 .replaceAll("<", "&lt;")
-                .replaceAll("<", "&gt;")
+                .replaceAll(">", "&gt;")
                 .replaceAll("'", "&#039;")
                 .replaceAll("\"", "&#034;");
     }

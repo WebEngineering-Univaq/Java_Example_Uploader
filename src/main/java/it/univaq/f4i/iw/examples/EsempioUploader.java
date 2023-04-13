@@ -63,7 +63,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -102,7 +101,7 @@ public class EsempioUploader extends HttpServlet {
         try (Connection c = ds.getConnection();
                 //Il tipo TYPE_SCROLL_INSENSITIVE (o SENSITIVE) è necessario per poter usare i metodi last() e getRow()
                 //The TYPE_SCROLL_INSENSITIVE  (or SENSITIVE) is required to use the last() and getRow() methods
-                PreparedStatement s2 = c.prepareStatement(ALL_FILES_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE)) {
+                PreparedStatement s2 = c.prepareStatement(ALL_FILES_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
 
             try (ResultSet r = s2.executeQuery()) {
                 result.appendToBody("<h2>Current repository contents</h2>");

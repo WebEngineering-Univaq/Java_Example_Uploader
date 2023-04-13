@@ -50,7 +50,7 @@ public class Upload extends HttpServlet {
         for (int i = 0; i < byteArray.length; i++) {
             char[] hexDigits = new char[2];
             hexDigits[0] = Character.forDigit((byteArray[i] >> 4) & 0xF, 16);
-            hexDigits[1] = Character.forDigit((byteArray[i] & 0xF), 16);          
+            hexDigits[1] = Character.forDigit((byteArray[i] & 0xF), 16);
             hexStringBuffer.append(new String(hexDigits));
         }
         return hexStringBuffer.toString();
@@ -67,8 +67,7 @@ public class Upload extends HttpServlet {
         //create a file (with a unique name) and copy the uploaded file to it
         //creiamo un nuovo file (con nome univoco) e copiamoci il file scaricato
         File uploaded_file = File.createTempFile("upload_", "", new File(getServletContext().getInitParameter("uploads.directory")));
-        try (InputStream is = file_to_upload.getInputStream();
-                OutputStream os = new FileOutputStream(uploaded_file)) {
+        try ( InputStream is = file_to_upload.getInputStream();  OutputStream os = new FileOutputStream(uploaded_file)) {
             byte[] buffer = new byte[1024];
             int read;
             while ((read = is.read(buffer)) > 0) {
@@ -85,9 +84,8 @@ public class Upload extends HttpServlet {
 
         //now put the file information in the database
         //adesso inseriamo tutte le informazioni sul file nel database
-        try (Connection c = ds.getConnection();
-                //indichiamo al driver la colonna in cui comparirà la chiave auto-generata dall'inserimento
-                PreparedStatement s = c.prepareStatement(ADD_FILE_QUERY, new String[]{"ID"})) {
+        try ( Connection c = ds.getConnection(); //indichiamo al driver la colonna in cui comparirà la chiave auto-generata dall'inserimento
+                  PreparedStatement s = c.prepareStatement(ADD_FILE_QUERY, new String[]{"ID"})) {
 
             s.setString(1, file_to_upload.getSubmittedFileName());
             s.setString(2, file_to_upload.getContentType());
@@ -96,14 +94,15 @@ public class Upload extends HttpServlet {
             s.setString(5, sdigest);
             if (s.executeUpdate() == 1) {
                 try ( //get the added record ID
-                        ResultSet keys = s.getGeneratedKeys()) {
+                         ResultSet keys = s.getGeneratedKeys()) {
                     keys.first();
                     fileID = keys.getInt(1);
                 }
                 HTMLResult result = new HTMLResult(getServletContext());
                 result.setTitle("Upload complete");
                 result.appendToBody("<h1>Successful upload</h1>");
-                result.appendToBody("<p>The file " + file_to_upload.getSubmittedFileName() + " (" + file_to_upload.getContentType() + ", " + file_to_upload.getSize() + "bytes, digest " + sdigest + ") has been correctly uploaded as " + uploaded_file.getAbsolutePath() + ". The file ID is " + fileID + "</p>");
+                result.appendToBody("<p>The file " + file_to_upload.getSubmittedFileName() + " (" + file_to_upload.getContentType() + ", " + file_to_upload.getSize() + "bytes, digest " + sdigest + ") has been correctly uploaded as " + uploaded_file.getAbsolutePath() + ". The file ID is " + fileID + ".</p>");
+                result.appendToBody("<p><a href=\"homepage\">Return to main page</a></p>");
                 result.activate(request, response);
             } else {
                 ServletHelpers.handleError("Upload error", request, response, getServletContext());
