@@ -99,8 +99,8 @@ public class EsempioUploader extends HttpServlet {
 
         result.appendToBody("<h1>File Repository</h1>");
         try (Connection c = ds.getConnection();
-                //Il tipo TYPE_SCROLL_INSENSITIVE (o SENSITIVE) è necessario per poter usare i metodi last() e getRow()
-                //The TYPE_SCROLL_INSENSITIVE  (or SENSITIVE) is required to use the last() and getRow() methods
+                //Il tipo TYPE_SCROLL_INSENSITIVE (o SENSITIVE, cioè non FORWARD_ONLY) è necessario per poter usare i metodi last() e getRow()
+                //The TYPE_SCROLL_INSENSITIVE  (or SENSITIVE, i.e. not FORWARD_ONLY) is required to use the last() and getRow() methods
                 PreparedStatement s2 = c.prepareStatement(ALL_FILES_QUERY, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
 
             try (ResultSet r = s2.executeQuery()) {
