@@ -6,7 +6,7 @@
      <context-param>
         <param-name>uploads.directory</param-name>
         <!-- Tomcat must have write permissions on this folder -->
-        <param-value>d:/didattica/teaching_workspace_local</param-value>
+        <param-value>C:/Users/Didattica/Documents/teaching_workspace_local</param-value>
     </context-param>
     <servlet>
         <servlet-name>Uploader</servlet-name>
