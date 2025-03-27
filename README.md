@@ -11,7 +11,14 @@ This is a *sample application* developed during the lectures of the  [**Web Engi
 
 ## Installation
 
-This is a Maven-based project. Simply download the code and open it in any Maven-enabled IDE such as Netbeans or Eclipse. Additionally, you may need to *configure the deploy settings*: the application is intended to be run on the **JavaEE 7** platform inside **Apache Tomcat version 9**. Refer to your IDE help files to perform this step. For example, in Apache Netbeans, you must enter these settings in Project properties > Run.
+This is a Maven-based project. Simply download the code and open it in any Maven-enabled IDE such as Netbeans or Eclipse. 
+
+*Please do not download the code from the main branch, but from the branch corresponding to the platform used in the lectures:**
+- the **JEE** branch contains the application version to be run on the **JavaEE 8** platform inside **Apache Tomcat version 9**. 
+- the **JKEE** branch contains the application version to be run on the **JakartaEE 10** platform inside **Apache Tomcat version 10**. 
+
+Note that you may need to *configure the deploy settings* based on the chosen platform/server: refer to your IDE help files to perform this step. For example, in Apache Netbeans, you must enter these settings in Project properties > Run.
+
 Finally, this example uses a MySQL database. Therefore, you need a working instance of **MySQL version 8 or above**. Instructions on how to setup the sample database are embedded as comments in the class code.
 
 
