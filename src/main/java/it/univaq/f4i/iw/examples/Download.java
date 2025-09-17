@@ -38,7 +38,7 @@ public class Download extends HttpServlet {
 
     private static final String GET_FILE_QUERY = "SELECT * FROM files WHERE ID=?";
 
-    @Resource(name = "jdbc/webdb")
+    @Resource(name = "jdbc/uploader")
     private DataSource ds;
 
     private void action_download(HttpServletRequest request, HttpServletResponse response) throws IOException, NamingException, SQLException {

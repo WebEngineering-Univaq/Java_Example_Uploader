@@ -40,7 +40,7 @@ public class Upload extends HttpServlet {
 
     private static final String ADD_FILE_QUERY = "INSERT INTO files(name,type,size,localfile,digest,updated) VALUES(?,?,?,?,?,CURRENT_TIMESTAMP)";
 
-    @Resource(name = "jdbc/webdb")
+    @Resource(name = "jdbc/uploader")
     private DataSource ds;
 
     //usata per il pretty printing del digest
