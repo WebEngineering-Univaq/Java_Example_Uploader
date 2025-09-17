@@ -6,7 +6,7 @@
      <context-param>
         <param-name>uploads.directory</param-name>
         <!-- Tomcat must have write permissions on this folder -->
-        <param-value>d:/didattica/teaching_workspace_local</param-value>
+        <param-value>C:/Users/Didattica/Documents/teaching_workspace_local</param-value>
     </context-param>
     <servlet>
         <servlet-name>Uploader</servlet-name>
@@ -47,7 +47,7 @@
         </session-timeout>
     </session-config>
     <resource-ref>
-        <res-ref-name>jdbc/webdb</res-ref-name>
+        <res-ref-name>jdbc/uploader</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>

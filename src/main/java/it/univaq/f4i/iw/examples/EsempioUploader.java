@@ -10,12 +10,12 @@
  * inserire il jar del connector/J 8 nella vostra applicazione
  *
  * ATTENZIONE: il codice fa uso di un database configurato come segue:
- * - database 'webdb' su DBMS MySQL in esecuzione su localhost
+ * - database 'uploader' su DBMS MySQL in esecuzione su localhost
  * - utente 'website' con password 'webpass' autorizzato nel DBMS 
  *   a leggere i dati del suddetto database
  * - la seguente tabella
  *
- * CREATE TABLE  `webdb`.`files` (
+ * CREATE TABLE  `uploader`.`files` (
  * `name` varchar(255) NOT NULL,
  * `type` varchar(255) NOT NULL,
  * `size` int(11) NOT NULL,
@@ -36,12 +36,12 @@
  * and in this case you should add the connector/J 8 jar in your application libraries.
  *
  * WARNING: the code makes use of a database configured as follows:
- * - 'webdb' database on a MySQL DBMS running on localhost
+ * - 'uploader' database on a MySQL DBMS running on localhost
  * - user 'website' with password 'webpass' authorized in the DBMS to read the 
  *   data of the aforementioned database
  * - the following table
  *
- * CREATE TABLE  `webdb`.`files` (
+ * CREATE TABLE  `uploader`.`files` (
  * `name` varchar(255) NOT NULL,
  * `type` varchar(255) NOT NULL,
  * `size` int(11) NOT NULL,
@@ -57,6 +57,7 @@ package it.univaq.f4i.iw.examples;
 
 import it.univaq.f4i.iw.framework.result.HTMLResult;
 import it.univaq.f4i.iw.framework.utils.ServletHelpers;
+import jakarta.annotation.Resource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,11 +67,10 @@ import java.text.DecimalFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 /**
@@ -81,7 +81,7 @@ public class EsempioUploader extends HttpServlet {
 
     private static final String ALL_FILES_QUERY = "SELECT ID,name,size,digest,updated,date_format(updated,'%d/%m/%Y %H:%i:%s') AS formatted_updated FROM files";
 
-    @Resource(name = "jdbc/webdb")
+    @Resource(name = "jdbc/uploader")
     private DataSource ds;
 
     private String humanReadableFileSize(long size) {
